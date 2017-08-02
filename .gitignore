@@ -1,2 +1,6 @@
 bounds_old.json
 typelist.json
+*.pyc
+venv/*
+chromedriver
+params.json
