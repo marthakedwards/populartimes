@@ -4,3 +4,4 @@ typelist.json
 venv/*
 chromedriver
 params.json
+results.json

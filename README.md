@@ -19,8 +19,7 @@ where the strings in `places` array can be any searchable term in Google Maps (n
 + execute scraping: `python scrape/main.py`
 
 ## Notes
-+ Data is just loaded into memory and then spat out in the terminal (but if this causes out of memory exception I can dynamically export to csv as the data gets pulled in, or similar)
-+ Data returned should be JSON formatted like the following example:
++ Data returned is output to results.json and should be formatted like the following example:
 ```
 [
   {
@@ -44,4 +43,4 @@ where the strings in `places` array can be any searchable term in Google Maps (n
   ...
 ]
 ```
-+ Popularity is in terms of percentage of the max, if I understand correctly, since Google doesn't expose precise data around this
++ Popularity is in terms of percentage of the max, if I understand correctly, since Google doesn't expose precise data
