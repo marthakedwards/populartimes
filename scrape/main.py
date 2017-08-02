@@ -41,7 +41,7 @@ def load_data():
 
   print("executionTime={}; nAvailable={}; nUnavailable={}"
         .format(timeit.default_timer() - start_time, n_available, n_unavailable))
-  print(locations)
+  print(json.dumps(locations))
 
 
 if __name__ == "__main__":

@@ -17,12 +17,12 @@ from selenium.webdriver.chrome.options import Options
 
 class BrowserScrape:
     css_keys = {
-        "value": "widget-pane-section-popular-times-value",
-        "label": "widget-pane-section-popular-times-label",
-        "container": "widget-pane-section-popular-times-graph",
-        "bar": "widget-pane-section-popular-times-bar",
+        "value": "section-popular-times-value",
+        "label": "section-popular-times-label",
+        "container": "section-popular-times-graph",
+        "bar": "section-popular-times-bar",
         "search": ".searchbox-searchbutton",
-        "section": ".widget-pane-section-popular-times"
+        "section": ".section-popular-times"
     }
 
     # adjust depending on internet connection
@@ -58,7 +58,8 @@ class BrowserScrape:
 
                 # get time from times label
                 label_container = container.find("div", class_=self.css_keys["label"])
-                time = re.sub("<[^>]+>", "", str(label_container)).strip(" Uhr")
+                time = re.sub("<[^>]+>", "", str(label_container)).strip("a").strip("p")
+
 
                 if defined_time is None and len(time) > 0:
                     defined_time = (j, int(time))
@@ -69,7 +70,8 @@ class BrowserScrape:
 
         # update popularities starting from first defined time
         for j, popularity in enumerate(popularities):
-            popularity["time"] = defined_time[1] + (j - defined_time[0]) % 24
+            if (defined_time):
+                popularity["time"] = defined_time[1] + (j - defined_time[0]) % 24
 
         return {"weekday": calendar.day_name[instance],
                 "weekday_num": instance,
@@ -77,7 +79,7 @@ class BrowserScrape:
 
     def get_popular_times(self, searchterm):
 
-        pageurl = "http://www.google.de/maps/place/{}".format(searchterm)
+        pageurl = "http://www.google.com/maps/place/{}".format(searchterm)
 
         try:
             self.driver.get(pageurl)
@@ -91,7 +93,6 @@ class BrowserScrape:
             self.driver.get(pageurl)
 
         try:
-
             # wait for searchbox
             WebDriverWait(self.driver, self.delaySB).until(
                 expected_conditions.presence_of_element_located((By.CSS_SELECTOR, self.css_keys["search"])))
