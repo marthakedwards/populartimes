@@ -1,13 +1,12 @@
 # populartimes
-exploring google maps popular times data
-forked from https://github.com/m-wrzr/populartimes
-## Requirements for RequestPlaces
+Exploring google maps popular times data. Forked from https://github.com/m-wrzr/populartimes.
+## Requirements
 + Google Chrome WebDriver for Selenium: https://sites.google.com/a/chromium.org/chromedriver/getting-started
-+ Google Maps API key: https://developers.google.com/places/web-service/?hl=de
++ Google Maps API key: https://developers.google.com/places/web-service/
 + Add params.json file to root directory, e.g.
 ```
 {
-  "API_key" : "AIzaSyByUdGDFevSlzYoJfoy0rHpTCMeLMbyll8",
+  "API_key" : "your-key-here",
   "places" : [
       "State Bird Provisions",
       "Tartine Manufactory",
@@ -43,4 +42,4 @@ where the strings in `places` array can be any searchable term in Google Maps (n
   ...
 ]
 ```
-+ Popularity is in terms of percentage of the max, if I understand correctly, since Google doesn't expose precise data
++ Popularity is in terms of percentage of the max, since Google doesn't expose precise data
